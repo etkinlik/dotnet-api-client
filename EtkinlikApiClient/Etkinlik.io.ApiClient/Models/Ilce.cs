@@ -5,7 +5,7 @@ using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Etkinlik.io.ApiClient.Models
+namespace EtkinlikIO.ApiClient.Models
 {
     public class Ilce
     {

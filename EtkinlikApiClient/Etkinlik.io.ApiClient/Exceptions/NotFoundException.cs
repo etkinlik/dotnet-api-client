@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Etkinlik.io.ApiClient.Models.Reponses;
+using EtkinlikIO.ApiClient.Models.Reponses;
 
-namespace Etkinlik.io.ApiClient.Exceptions
+namespace EtkinlikIO.ApiClient.Exceptions
 {
     public class NotFoundException : Exception
     {
@@ -15,5 +15,10 @@ namespace Etkinlik.io.ApiClient.Exceptions
         {
             this.response = response;
         }
+
+		public GeneralErrorResponse getResponse()
+		{
+			return this.response;
+		}
     }
 }

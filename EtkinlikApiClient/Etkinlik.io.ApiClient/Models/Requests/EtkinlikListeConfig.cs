@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Etkinlik.io.ApiClient.Models.Requests
+namespace EtkinlikIO.ApiClient.Models.Requests
 {
     public class EtkinlikListeConfig
     {

@@ -5,7 +5,7 @@ using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Etkinlik.io.ApiClient.Models.Reponses
+namespace EtkinlikIO.ApiClient.Models.Reponses
 {
     public class EtkinlikListeResponse
     {

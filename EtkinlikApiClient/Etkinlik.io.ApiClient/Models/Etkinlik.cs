@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Etkinlik.io.ApiClient.Models.Etkinlikler;
+using EtkinlikIO.ApiClient.Models.Etkinlikler;
 
-namespace Etkinlik.io.ApiClient.Models
+namespace EtkinlikIO.ApiClient.Models
 {
     public class Etkinlik
     {

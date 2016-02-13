@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.ModelBinding;
-using Etkinlik.io.ApiClient.Models.Reponses;
+using EtkinlikIO.ApiClient.Models.Reponses;
 
-namespace Etkinlik.io.ApiClient.Exceptions
+namespace EtkinlikIO.ApiClient.Exceptions
 {
     public class MovedException : Exception
     {
-        private EtkinlikMovedResponse _response;
+        private EtkinlikMovedResponse response;
 
         public MovedException(EtkinlikMovedResponse response): base(response.mesaj)
         {
-            this._response = response;
+            this.response = response;
         }
+
+		public EtkinlikMovedResponse getResponse()
+		{
+			return this.response;
+		}
     }
 }

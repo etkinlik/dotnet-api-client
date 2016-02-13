@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Etkinlik.io.ApiClient.Exceptions
+namespace EtkinlikIO.ApiClient.Exceptions
 {
     public class UnknownException : Exception
     {

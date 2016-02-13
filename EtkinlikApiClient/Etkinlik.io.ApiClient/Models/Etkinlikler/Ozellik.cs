@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Etkinlik.io.ApiClient.Models.Etkinlikler
+namespace EtkinlikIO.ApiClient.Models.Etkinlikler
 {
     public class Ozellik
     {

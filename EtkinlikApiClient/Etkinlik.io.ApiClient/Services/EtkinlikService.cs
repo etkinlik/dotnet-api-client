@@ -6,17 +6,17 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using Etkinlik.io.ApiClient.Exceptions;
-using Etkinlik.io.ApiClient.Models;
-using Etkinlik.io.ApiClient.Models.Reponses;
-using Etkinlik.io.ApiClient.Models.Requests;
+using EtkinlikIO.ApiClient.Exceptions;
+using EtkinlikIO.ApiClient.Models;
+using EtkinlikIO.ApiClient.Models.Reponses;
+using EtkinlikIO.ApiClient.Models.Requests;
 using Newtonsoft.Json;
 
-namespace Etkinlik.io.ApiClient.Services
+namespace EtkinlikIO.ApiClient.Services
 {
     public class EtkinlikService
     {
-        public ApiClient client { get; set; }
+		private ApiClient client;
 
         public EtkinlikService(ApiClient client)
         {
@@ -25,40 +25,48 @@ namespace Etkinlik.io.ApiClient.Services
 
         public EtkinlikListeResponse GetList(EtkinlikListeConfig config = null)
         {
-            string adres = "";
-            if (config != null)
-            {
-                adres = "?" + config.Params().ToString();
-            }
-            Task<HttpResponseMessage> response = client.Call("/etkinlikler" + adres);
-            switch (response.Result.StatusCode)
-            {
-                case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<EtkinlikListeResponse>(
-                        response.Result.Content.ReadAsStringAsync().Result);
-                case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedAccessException();
-            }
+			string queryString = config == null ? "" : "?" + config.Params().ToString();
+          
+			Task<HttpResponseMessage> response = client.ApiCall("/etkinlikler" + queryString);
+            
+			string result = response.Result.Content.ReadAsStringAsync ().Result;
+
+			switch (response.Result.StatusCode) 
+			{
+				case HttpStatusCode.OK:
+					return JsonConvert.DeserializeObject<EtkinlikListeResponse> (result);
+
+				case HttpStatusCode.Unauthorized:
+					throw new UnauthorizedException (JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
+			}
+
             throw new UnknownException(response.Result);
         }
 
-        public Models.Etkinlik GetById(int id)
+        public Etkinlik GetById(int id)
         {
-            Task<HttpResponseMessage> response = client.Call("/etkinlik/" + id);
+            Task<HttpResponseMessage> response = client.ApiCall("/etkinlik/" + id);
+
             string result = response.Result.Content.ReadAsStringAsync().Result;
+
             switch (response.Result.StatusCode)
             {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<Models.Etkinlik>(result);
+                    return JsonConvert.DeserializeObject<Etkinlik>(result);
+
                 case HttpStatusCode.Moved:
                     throw new MovedException(JsonConvert.DeserializeObject<EtkinlikMovedResponse>(result));
+
                 case HttpStatusCode.BadRequest:
                     throw new BadRequestException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
+
                 case HttpStatusCode.Unauthorized:
                     throw new UnauthorizedException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
+
                 case HttpStatusCode.NotFound:
                     throw new NotFoundException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
             }
+
             throw new UnknownException(response.Result);
         }
     }
