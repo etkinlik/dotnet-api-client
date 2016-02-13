@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Etkinlik.io.ApiClient.Models
 {
-    public class Tur
+    public class Sehir
     {
         public int id { get; set; }
         public string adi { get; set;  }

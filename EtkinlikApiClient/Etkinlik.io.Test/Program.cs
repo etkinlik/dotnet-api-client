@@ -10,8 +10,6 @@ namespace Etkinlik.io.Test
     {
         static void Main(string[] args)
         {
-            ApiClient.ApiClient _api = new ApiClient.ApiClient();
-            _api._turService.List();
             Console.ReadKey();
         }
     }

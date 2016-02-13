@@ -12,22 +12,22 @@ using Newtonsoft.Json;
 
 namespace Etkinlik.io.ApiClient.Services
 {
-    public class TurService
+    public class KategoriService
     {
         public ApiClient client { get; set; }
-        public TurService(ApiClient client)
+        public KategoriService(ApiClient client)
         {
             this.client = client;
         }
 
-        public List<Tur> GetList()
+        public List<Kategori> GetList()
         {
-            Task<HttpResponseMessage> response = client.Call("/turler");
+            Task<HttpResponseMessage> response = client.Call("/kategoriler");
 
             switch (response.Result.StatusCode)
             {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<List<Tur>>(response.Result.Content.ReadAsStringAsync().Result);
+                    return JsonConvert.DeserializeObject<List<Kategori>>(response.Result.Content.ReadAsStringAsync().Result);
                 case HttpStatusCode.Unauthorized:
                     throw new UnauthorizedAccessException();
             }
