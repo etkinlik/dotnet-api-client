@@ -11,14 +11,14 @@ namespace EtkinlikIO.ApiClient.Exceptions
     {
         private EtkinlikMovedResponse response;
 
-        public MovedException(EtkinlikMovedResponse response): base(response.mesaj)
+        public MovedException (EtkinlikMovedResponse response) : base (response.mesaj)
         {
             this.response = response;
         }
 
-		public EtkinlikMovedResponse getResponse()
-		{
-			return this.response;
-		}
+        public EtkinlikMovedResponse getResponse ()
+        {
+            return this.response;
+        }
     }
 }

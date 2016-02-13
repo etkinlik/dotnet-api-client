@@ -11,7 +11,7 @@ namespace EtkinlikIO.ApiClient.Exceptions
     {
         public GeneralErrorResponse response;
 
-        public BadRequestException(GeneralErrorResponse response) : base(response.mesaj)
+        public BadRequestException (GeneralErrorResponse response) : base (response.mesaj)
         {
             this.response = response;
         }

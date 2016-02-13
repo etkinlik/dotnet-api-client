@@ -9,8 +9,11 @@ namespace EtkinlikIO.ApiClient.Models.Reponses
     public class Sayfalama
     {
         public int toplamKayit { get; set; }
+
         public int toplamSayfa { get; set; }
+
         public int sayfa { get; set; }
+
         public int adet { get; set; }
 
     }

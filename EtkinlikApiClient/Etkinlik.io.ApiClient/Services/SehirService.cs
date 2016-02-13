@@ -14,27 +14,26 @@ namespace EtkinlikIO.ApiClient.Services
 {
     public class SehirService
     {
-		private ApiClient client;
+        private ApiClient client;
 
-		public SehirService(ApiClient client)
-		{
-			this.client = client;
-		}
-
-        public List<Sehir> GetList()
+        public SehirService (ApiClient client)
         {
-            Task<HttpResponseMessage> response = client.ApiCall("/sehirler");
+            this.client = client;
+        }
 
-            switch (response.Result.StatusCode)
-            {
+        public List<Sehir> GetList ()
+        {
+            Task<HttpResponseMessage> response = client.ApiCall ("/sehirler");
+
+            switch (response.Result.StatusCode) {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<List<Sehir>>(response.Result.Content.ReadAsStringAsync().Result);
+                    return JsonConvert.DeserializeObject<List<Sehir>> (response.Result.Content.ReadAsStringAsync ().Result);
 
                 case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedAccessException();
+                    throw new UnauthorizedAccessException ();
             }
 
-            throw new UnknownException(response.Result);
+            throw new UnknownException (response.Result);
         }
     }
 

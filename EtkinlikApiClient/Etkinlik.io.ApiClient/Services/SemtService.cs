@@ -15,32 +15,31 @@ namespace EtkinlikIO.ApiClient.Services
 {
     public class SemtService
     {
-		private ApiClient client;
+        private ApiClient client;
 
-		public SemtService(ApiClient client)
-		{
-			this.client = client;
-		}
-
-        public List<Semt> GetListByIlceId(int ilceId)
+        public SemtService (ApiClient client)
         {
-            Task<HttpResponseMessage> response = client.ApiCall("/ilce/" + ilceId + "/semtler");
+            this.client = client;
+        }
+
+        public List<Semt> GetListByIlceId (int ilceId)
+        {
+            Task<HttpResponseMessage> response = client.ApiCall ("/ilce/" + ilceId + "/semtler");
             
-			string result = response.Result.Content.ReadAsStringAsync().Result;
+            string result = response.Result.Content.ReadAsStringAsync ().Result;
             
-			switch (response.Result.StatusCode)
-            {
+            switch (response.Result.StatusCode) {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<List<Semt>>(result);
+                    return JsonConvert.DeserializeObject<List<Semt>> (result);
 
                 case HttpStatusCode.BadRequest:
-                    throw new BadRequestException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
+                    throw new BadRequestException (JsonConvert.DeserializeObject<GeneralErrorResponse> (result));
 
                 case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
+                    throw new UnauthorizedException (JsonConvert.DeserializeObject<GeneralErrorResponse> (result));
             }
 
-            throw new UnknownException(response.Result);
+            throw new UnknownException (response.Result);
         }
     }
 

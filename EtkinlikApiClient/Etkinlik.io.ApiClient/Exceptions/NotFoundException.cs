@@ -11,14 +11,14 @@ namespace EtkinlikIO.ApiClient.Exceptions
     {
         private GeneralErrorResponse response;
 
-        public NotFoundException(GeneralErrorResponse response): base(response.mesaj)
+        public NotFoundException (GeneralErrorResponse response) : base (response.mesaj)
         {
             this.response = response;
         }
 
-		public GeneralErrorResponse getResponse()
-		{
-			return this.response;
-		}
+        public GeneralErrorResponse getResponse ()
+        {
+            return this.response;
+        }
     }
 }

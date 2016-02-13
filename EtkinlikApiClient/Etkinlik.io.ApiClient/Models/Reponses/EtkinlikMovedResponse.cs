@@ -9,7 +9,9 @@ namespace EtkinlikIO.ApiClient.Models.Reponses
     public class EtkinlikMovedResponse
     {
         public int sonuc { get; set; }
+
         public string mesaj { get; set; }
+
         public int yeniId { get; set; }
     }
 }

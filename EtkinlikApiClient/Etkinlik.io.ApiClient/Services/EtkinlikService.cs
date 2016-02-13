@@ -16,58 +16,57 @@ namespace EtkinlikIO.ApiClient.Services
 {
     public class EtkinlikService
     {
-		private ApiClient client;
+        private ApiClient client;
 
-        public EtkinlikService(ApiClient client)
+        public EtkinlikService (ApiClient client)
         {
             this.client = client;
         }
 
-        public EtkinlikListeResponse GetList(EtkinlikListeConfig config = null)
+        public EtkinlikListeResponse GetList (EtkinlikListeConfig config = null)
         {
-			string queryString = config == null ? "" : "?" + config.Params().ToString();
+            string queryString = config == null ? "" : "?" + config.Params ().ToString ();
           
-			Task<HttpResponseMessage> response = client.ApiCall("/etkinlikler" + queryString);
+            Task<HttpResponseMessage> response = client.ApiCall ("/etkinlikler" + queryString);
             
-			string result = response.Result.Content.ReadAsStringAsync ().Result;
+            string result = response.Result.Content.ReadAsStringAsync ().Result;
 
-			switch (response.Result.StatusCode) 
-			{
-				case HttpStatusCode.OK:
-					return JsonConvert.DeserializeObject<EtkinlikListeResponse> (result);
+            switch (response.Result.StatusCode) {
 
-				case HttpStatusCode.Unauthorized:
-					throw new UnauthorizedException (JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
-			}
-
-            throw new UnknownException(response.Result);
-        }
-
-        public Etkinlik GetById(int id)
-        {
-            Task<HttpResponseMessage> response = client.ApiCall("/etkinlik/" + id);
-
-            string result = response.Result.Content.ReadAsStringAsync().Result;
-
-            switch (response.Result.StatusCode)
-            {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<Etkinlik>(result);
-
-                case HttpStatusCode.Moved:
-                    throw new MovedException(JsonConvert.DeserializeObject<EtkinlikMovedResponse>(result));
-
-                case HttpStatusCode.BadRequest:
-                    throw new BadRequestException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
+                    return JsonConvert.DeserializeObject<EtkinlikListeResponse> (result);
 
                 case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
-
-                case HttpStatusCode.NotFound:
-                    throw new NotFoundException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
+                    throw new UnauthorizedException (JsonConvert.DeserializeObject<GeneralErrorResponse> (result));
             }
 
-            throw new UnknownException(response.Result);
+            throw new UnknownException (response.Result);
+        }
+
+        public Etkinlik GetById (int id)
+        {
+            Task<HttpResponseMessage> response = client.ApiCall ("/etkinlik/" + id);
+
+            string result = response.Result.Content.ReadAsStringAsync ().Result;
+
+            switch (response.Result.StatusCode) {
+                case HttpStatusCode.OK:
+                    return JsonConvert.DeserializeObject<Etkinlik> (result);
+
+                case HttpStatusCode.Moved:
+                    throw new MovedException (JsonConvert.DeserializeObject<EtkinlikMovedResponse> (result));
+
+                case HttpStatusCode.BadRequest:
+                    throw new BadRequestException (JsonConvert.DeserializeObject<GeneralErrorResponse> (result));
+
+                case HttpStatusCode.Unauthorized:
+                    throw new UnauthorizedException (JsonConvert.DeserializeObject<GeneralErrorResponse> (result));
+
+                case HttpStatusCode.NotFound:
+                    throw new NotFoundException (JsonConvert.DeserializeObject<GeneralErrorResponse> (result));
+            }
+
+            throw new UnknownException (response.Result);
         }
     }
 }

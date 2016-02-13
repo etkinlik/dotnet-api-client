@@ -9,6 +9,7 @@ namespace EtkinlikIO.ApiClient.Models
     public class Semt
     {
         public int id { get; set; }
-        public string adi { get; set;  }
+
+        public string adi { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace EtkinlikIO.ApiClient.Models.Reponses
     public class GeneralErrorResponse
     {
         public int sonuc { get; set; }
+
         public string mesaj { get; set; }
 
     }

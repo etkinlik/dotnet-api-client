@@ -14,27 +14,26 @@ namespace EtkinlikIO.ApiClient.Services
 {
     public class TurService
     {
-		private ApiClient client;
+        private ApiClient client;
 
-		public TurService(ApiClient client)
-		{
-			this.client = client;
-		}
-
-        public List<Tur> GetList()
+        public TurService (ApiClient client)
         {
-            Task<HttpResponseMessage> response = client.ApiCall("/turler");
+            this.client = client;
+        }
 
-            switch (response.Result.StatusCode)
-            {
+        public List<Tur> GetList ()
+        {
+            Task<HttpResponseMessage> response = client.ApiCall ("/turler");
+
+            switch (response.Result.StatusCode) {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<List<Tur>>(response.Result.Content.ReadAsStringAsync().Result);
+                    return JsonConvert.DeserializeObject<List<Tur>> (response.Result.Content.ReadAsStringAsync ().Result);
 
                 case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedAccessException();
+                    throw new UnauthorizedAccessException ();
             }
 
-            throw new UnknownException(response.Result);
+            throw new UnknownException (response.Result);
         }
     }
 

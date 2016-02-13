@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Etkinlik.io.ApiClient")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("EtkinlikIO.ApiClient")]
+[assembly: AssemblyDescription("Etkinlik keşif ve öneri sistemidir.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Etkinlik.io.ApiClient")]
+[assembly: AssemblyCompany("Etkinlik.io")]
+[assembly: AssemblyProduct("EtkinlikIO.ApiClient")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Etkinlik.io")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

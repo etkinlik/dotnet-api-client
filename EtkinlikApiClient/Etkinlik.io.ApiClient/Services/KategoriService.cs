@@ -14,27 +14,26 @@ namespace EtkinlikIO.ApiClient.Services
 {
     public class KategoriService
     {
-		private ApiClient client;
+        private ApiClient client;
 
-		public KategoriService(ApiClient client)
-		{
-			this.client = client;
-		}
-
-        public List<Kategori> GetList()
+        public KategoriService (ApiClient client)
         {
-            Task<HttpResponseMessage> response = client.ApiCall("/kategoriler");
+            this.client = client;
+        }
 
-            switch (response.Result.StatusCode)
-            {
+        public List<Kategori> GetList ()
+        {
+            Task<HttpResponseMessage> response = client.ApiCall ("/kategoriler");
+
+            switch (response.Result.StatusCode) {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<List<Kategori>>(response.Result.Content.ReadAsStringAsync().Result);
+                    return JsonConvert.DeserializeObject<List<Kategori>> (response.Result.Content.ReadAsStringAsync ().Result);
 
                 case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedAccessException();
+                    throw new UnauthorizedAccessException ();
             }
 
-            throw new UnknownException(response.Result);
+            throw new UnknownException (response.Result);
         }
     }
 

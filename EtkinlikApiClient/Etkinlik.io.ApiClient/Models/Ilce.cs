@@ -10,7 +10,9 @@ namespace EtkinlikIO.ApiClient.Models
     public class Ilce
     {
         public int id { get; set; }
-        public string adi { get; set;  }
+
+        public string adi { get; set; }
+
         public Sehir sehir { get; set; }
     }
 }

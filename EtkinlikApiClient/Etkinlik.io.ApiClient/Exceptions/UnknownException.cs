@@ -11,7 +11,7 @@ namespace EtkinlikIO.ApiClient.Exceptions
     {
         public HttpResponseMessage response { get; set; }
 
-        public UnknownException(HttpResponseMessage response)
+        public UnknownException (HttpResponseMessage response)
         {
             this.response = response;
         }

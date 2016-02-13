@@ -11,7 +11,7 @@ namespace EtkinlikIO.ApiClient.Exceptions
     {
         public GeneralErrorResponse response;
 
-        public UnauthorizedException(GeneralErrorResponse response) : base(response.mesaj)
+        public UnauthorizedException (GeneralErrorResponse response) : base (response.mesaj)
         {
             this.response = response;
         }

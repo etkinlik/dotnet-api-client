@@ -15,32 +15,31 @@ namespace EtkinlikIO.ApiClient.Services
 {
     public class IlceService
     {
-		private ApiClient client;
+        private ApiClient client;
 
-		public IlceService(ApiClient client)
-		{
-			this.client = client;
-		}
-
-        public List<Ilce> GetListBySehirId(int sehirId)
+        public IlceService (ApiClient client)
         {
-            Task<HttpResponseMessage> response = client.ApiCall("/sehir/" + sehirId + "/ilceler");
+            this.client = client;
+        }
 
-            string result = response.Result.Content.ReadAsStringAsync().Result;
+        public List<Ilce> GetListBySehirId (int sehirId)
+        {
+            Task<HttpResponseMessage> response = client.ApiCall ("/sehir/" + sehirId + "/ilceler");
 
-            switch (response.Result.StatusCode)
-            {
+            string result = response.Result.Content.ReadAsStringAsync ().Result;
+
+            switch (response.Result.StatusCode) {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<List<Ilce>>(result);
+                    return JsonConvert.DeserializeObject<List<Ilce>> (result);
 
                 case HttpStatusCode.BadRequest:
-                    throw new BadRequestException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
+                    throw new BadRequestException (JsonConvert.DeserializeObject<GeneralErrorResponse> (result));
 
                 case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
+                    throw new UnauthorizedException (JsonConvert.DeserializeObject<GeneralErrorResponse> (result));
             }
 
-            throw new UnknownException(response.Result);
+            throw new UnknownException (response.Result);
         }
     }
 
