@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Etkinlik.io.ApiClient.Models
 {
-    public class Tur
+    public class Semt
     {
         public int id { get; set; }
         public string adi { get; set;  }
-        public string radi { get; set;  }
     }
 }
