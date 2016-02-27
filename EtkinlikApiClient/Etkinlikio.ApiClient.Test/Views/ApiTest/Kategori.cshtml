@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EtkinlikIO.ApiClient.Models.Kategori>
+
+@{
+    ViewBag.Title = "Kategori";
+}
+
+<h2>Kategoriler</h2>
+
+<table class="table table-responsive table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.radi)
+        </th>
+        <th>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.adi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.radi)
+        </td>
+        <td>
+            <a href="~/ApiTest/KategoriEtkinlik/@item.id">Kategoriye Göre Etkinlik Listesi -></a>
+        </td>
+    </tr>
+}
+
+</table>

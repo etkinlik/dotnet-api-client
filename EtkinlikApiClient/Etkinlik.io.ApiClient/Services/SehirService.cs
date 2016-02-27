@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using EtkinlikIO.ApiClient.Exceptions;
+﻿using EtkinlikIO.ApiClient.Exceptions;
 using EtkinlikIO.ApiClient.Models;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 
 namespace EtkinlikIO.ApiClient.Services
 {
@@ -16,25 +12,27 @@ namespace EtkinlikIO.ApiClient.Services
     {
         private ApiClient client;
 
-        public SehirService (ApiClient client)
+        public SehirService(ApiClient client)
         {
             this.client = client;
         }
 
-        public List<Sehir> GetList ()
+        public List<Sehir> GetList()
         {
-            Task<HttpResponseMessage> response = client.ApiCall ("/sehirler");
+            HttpWebResponse response = client.ApiCall("/sehirler");
 
-            switch (response.Result.StatusCode) {
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+
+            switch (response.StatusCode)
+            {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<List<Sehir>> (response.Result.Content.ReadAsStringAsync ().Result);
+                    return JsonConvert.DeserializeObject<List<Sehir>>(reader.ReadToEnd());
 
                 case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedAccessException ();
+                    throw new UnauthorizedAccessException();
             }
 
-            throw new UnknownException (response.Result);
+            throw new UnknownException(response);
         }
     }
-
 }

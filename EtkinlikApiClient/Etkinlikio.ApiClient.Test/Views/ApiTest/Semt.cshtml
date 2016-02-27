@@ -1,0 +1,33 @@
+﻿@model IEnumerable<EtkinlikIO.ApiClient.Models.Semt>
+
+@{
+    ViewBag.Title = "Semt";
+}
+
+<h2>Semt</h2>
+
+<table class="table table-responsive table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adi)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.adi)
+            </td>
+            <td></td>
+        </tr>
+    }
+
+</table>

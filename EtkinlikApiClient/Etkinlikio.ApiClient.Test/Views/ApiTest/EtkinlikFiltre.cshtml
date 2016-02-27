@@ -1,0 +1,130 @@
+﻿@model IEnumerable<EtkinlikIO.ApiClient.Models.Etkinlik>
+
+@{
+    ViewBag.Title = "Etkinlik";
+}
+
+<script src="~/Scripts/site.js"></script>
+
+<h3>Tüm Etkinlikler</h3>
+
+<table class="table table-responsive table-hover">
+    <tr>
+        <th>
+            Toplam Kayıt
+        </th>
+        <td>
+            @ViewBag.sayfalama.toplamKayit
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Toplam Sayfa
+        </th>
+        <td>
+            @ViewBag.sayfalama.toplamSayfa
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Sayfa
+        </th>
+        <td>
+            @ViewBag.sayfalama.sayfa
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Adet
+        </th>
+        <td>
+            @ViewBag.sayfalama.adet
+        </td>
+    </tr>
+</table>
+
+<button class="btn btn-success" onclick="hideShow()">Filtre Göster/Gizle</button>
+<br />
+<form method="post" action="~/ApiTest/Etkinlik" style="display:none" id="formFiltre" role="form">
+    <h3>Etkinlik Filtreleme</h3>
+    <table class="table">
+        <tr class="form-group">
+            <td><label for="tur">Tür Id</label></td>
+            <td><input id="turId" name="turId" type="text"></td>
+        </tr>
+        <tr class="form-group">
+            <td><label for="kategori">Kategori Id</label></td>
+            <td><input id="kategoriId" name="kategoriId" type="text"></td>
+        </tr>
+        <tr class="form-group">
+            <td><label for="mekan">Mekan Id</label></td>
+            <td><input id="mekanId" name="mekanId" type="text"></td>
+        </tr>
+        <tr class="form-group">
+            <td>
+                <label for="sehir">Şehir Id</label>
+            </td>
+            <td><input id="sehirId" name="sehirId" type="text"></td>
+        </tr>
+
+        <tr class="form-group">
+            <td><label for="sayfa">Sayfa</label> </td>
+            <td><input id="sayfa" name="sayfa" type="text"> </td>
+        </tr>
+
+        <tr class="form-group">
+            <td><label for="adet">Adet</label></td>
+            <td><input id="adet" name="adet" type="text"></td>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                <button type="submit" class="btn btn-primary">Filtrele</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<br />
+
+@foreach (var item in Model)
+{
+    {
+        <blockquote>
+            <dl>
+                <dt> <strong>@Html.DisplayNameFor(model => model.adi) </strong> </dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.adi)
+                </dd>
+                <dt> <strong>@Html.DisplayNameFor(model => model.radi) </strong> </dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.radi)
+                </dd>
+                <dt> <strong>@Html.DisplayNameFor(model => model.url) </strong> </dt>
+
+                <dd>
+                    @Html.DisplayFor(modelItem => item.url)
+                </dd>
+                <dt> <strong>@Html.DisplayNameFor(model => model.icerik) </strong> </dt>
+                <dd>
+                    @Html.Raw(item.icerik)
+                </dd>
+                <dt> <strong>@Html.DisplayNameFor(model => model.baslangic) </strong> </dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.baslangic)
+                </dd>
+                <dt> <strong>@Html.DisplayNameFor(model => model.bitis) </strong> </dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.bitis)
+                </dd>
+                <dt> <strong>@Html.DisplayNameFor(model => model.ucretliMi) </strong> </dt>
+                <dd>
+                    @Html.DisplayFor(modelItem => item.ucretliMi)
+                </dd>
+            </dl>
+
+        </blockquote>
+    }
+
+}
+
+

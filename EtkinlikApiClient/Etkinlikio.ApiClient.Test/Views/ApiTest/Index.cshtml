@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class=" table table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>
+                Servis Num
+            </th>
+            <th>
+                Servis Adı
+            </th>
+            <th>
+                Açıklama
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Tüm Etkinlikler</td>
+            <td>
+                Etkinliklerin tamamını görmek için @Html.ActionLink("tıklayın", "Etkinlik")
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Kategoriler</td>
+            <td>
+                Etkinlik kategorilerini görmek için @Html.ActionLink("tıklayın", "Kategori")
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Türler</td>
+            <td>
+                Etkinlik türlerini görmek için @Html.ActionLink("tıklayın", "Tur")
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Şehirler ve Kodları</td>
+            <td>
+                Şehir ve şehir kodlarını görmek için @Html.ActionLink("tıklayın", "Sehir")
+            </td>
+            <td>
+            </td>
+        </tr>
+    </tbody>
+</table>
