@@ -1,9 +1,9 @@
-﻿using System;
+﻿using EtkinlikIO.ApiClient.Models.Responses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EtkinlikIO.ApiClient.Models.Reponses;
 
 namespace EtkinlikIO.ApiClient.Exceptions
 {
@@ -11,12 +11,13 @@ namespace EtkinlikIO.ApiClient.Exceptions
     {
         private EtkinlikMovedResponse response;
 
-        public MovedException (EtkinlikMovedResponse response) : base (response.mesaj)
+        public MovedException(EtkinlikMovedResponse response)
+            : base(response.mesaj)
         {
             this.response = response;
         }
 
-        public EtkinlikMovedResponse getResponse ()
+        public EtkinlikMovedResponse getResponse()
         {
             return this.response;
         }
