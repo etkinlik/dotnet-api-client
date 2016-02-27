@@ -1,10 +1,14 @@
-﻿using EtkinlikIO.ApiClient.Exceptions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using EtkinlikIO.ApiClient.Exceptions;
 using EtkinlikIO.ApiClient.Models;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
 
 namespace EtkinlikIO.ApiClient.Services
 {
@@ -12,27 +16,25 @@ namespace EtkinlikIO.ApiClient.Services
     {
         private ApiClient client;
 
-        public TurService(ApiClient client)
+        public TurService (ApiClient client)
         {
             this.client = client;
         }
 
-        public List<Tur> GetList()
+        public List<Tur> GetList ()
         {
-            HttpWebResponse response = client.ApiCall("/turler");
+            Task<HttpResponseMessage> response = client.ApiCall ("/turler");
 
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-
-            switch (response.StatusCode)
-            {
+            switch (response.Result.StatusCode) {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<List<Tur>>(reader.ReadToEnd());
+                    return JsonConvert.DeserializeObject<List<Tur>> (response.Result.Content.ReadAsStringAsync ().Result);
 
                 case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedAccessException();
+                    throw new UnauthorizedAccessException ();
             }
 
-            throw new UnknownException(response);
+            throw new UnknownException (response.Result);
         }
     }
+
 }

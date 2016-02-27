@@ -1,9 +1,9 @@
-﻿using EtkinlikIO.ApiClient.Models.Responses;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EtkinlikIO.ApiClient.Models.Reponses;
 
 namespace EtkinlikIO.ApiClient.Exceptions
 {
@@ -11,13 +11,12 @@ namespace EtkinlikIO.ApiClient.Exceptions
     {
         private GeneralErrorResponse response;
 
-        public NotFoundException(GeneralErrorResponse response)
-            : base(response.mesaj)
+        public NotFoundException (GeneralErrorResponse response) : base (response.mesaj)
         {
             this.response = response;
         }
 
-        public GeneralErrorResponse getResponse()
+        public GeneralErrorResponse getResponse ()
         {
             return this.response;
         }

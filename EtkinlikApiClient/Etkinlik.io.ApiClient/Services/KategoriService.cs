@@ -1,14 +1,14 @@
-﻿using EtkinlikIO.ApiClient.Exceptions;
-using EtkinlikIO.ApiClient.Models;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using EtkinlikIO.ApiClient.Exceptions;
+using EtkinlikIO.ApiClient.Models;
+using Newtonsoft.Json;
 
 namespace EtkinlikIO.ApiClient.Services
 {
@@ -16,26 +16,25 @@ namespace EtkinlikIO.ApiClient.Services
     {
         private ApiClient client;
 
-        public KategoriService(ApiClient client)
+        public KategoriService (ApiClient client)
         {
             this.client = client;
         }
 
-        public List<Kategori> GetList()
+        public List<Kategori> GetList ()
         {
-            HttpWebResponse response = client.ApiCall("/kategoriler");
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            
-            switch (response.StatusCode)
-            {
+            Task<HttpResponseMessage> response = client.ApiCall ("/kategoriler");
+
+            switch (response.Result.StatusCode) {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<List<Kategori>>(reader.ReadToEnd());
+                    return JsonConvert.DeserializeObject<List<Kategori>> (response.Result.Content.ReadAsStringAsync ().Result);
 
                 case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedAccessException();
+                    throw new UnauthorizedAccessException ();
             }
-            throw new UnknownException(response);
 
+            throw new UnknownException (response.Result);
         }
     }
+
 }
