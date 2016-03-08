@@ -7,10 +7,10 @@ namespace Etkinlikio.ApiClient.Test.Models
 {
     public class EtkinlikFilter
     {
-        public int turId { get; set; }
-        public int kategoriId { get; set; }
-        public int mekanId { get; set; }
-        public int sehirId { get; set; }
+        public string turIds { get; set; }
+        public string kategoriIds { get; set; }
+        public string mekanIds { get; set; }
+        public string sehirIds { get; set; }
         public int sayfa { get; set; }
         public int adet { get; set; }
     }

@@ -44,40 +44,47 @@
 </table>
 
 <button class="btn btn-success" onclick="hideShow()">Filtre Göster/Gizle</button>
-    <br />
+<br />
 <form method="post" action="/ApiTest/Etkinlik" style="display:none" id="formFiltre" role="form">
     <h3>Etkinlik Filtreleme</h3>
     <table class="table">
         <tr class="form-group">
-            <td><label for="tur">Tür Id</label></td>
-            <td><input id="turId" name="turId" type="text"></td>
+            <td><label for="tur">Tür Ids</label></td>
+            <td><input id="turIds" name="turIds" type="text"></td>
+            <td><label>Birden çok turId girmek için virgülle ayırınız. Boşluk kullanmayın.</label></td>
         </tr>
         <tr class="form-group">
-            <td><label for="kategori">Kategori Id</label></td>
-            <td><input id="kategoriId" name="kategoriId" type="text"></td>
+            <td><label for="kategori">Kategori Ids</label></td>
+            <td><input id="kategoriIds" name="kategoriIds" type="text"></td>
+            <td><label>Birden çok kategoriId girmek için virgülle ayırınız. Boşluk kullanmayın.</label></td>
         </tr>
         <tr class="form-group">
-            <td><label for="mekan">Mekan Id</label></td>
-            <td><input id="mekanId" name="mekanId" type="text"></td>
+            <td><label for="mekan">Mekan Ids</label></td>
+            <td><input id="mekanIds" name="mekanIds" type="text"></td>
+            <td><label>Birden çok mekanId girmek için virgülle ayırınız. Boşluk kullanmayın.</label></td>
         </tr>
         <tr class="form-group">
             <td>
-                <label for="sehir">Şehir Id</label>
+                <label for="sehir">Şehir Ids</label>
             </td>
-            <td><input id="sehirId" name="sehirId" type="text"></td>
+            <td><input id="sehirIds" name="sehirId" type="text"></td>
+            <td><label>Birden çok sehirId girmek için virgülle ayırınız. Boşluk kullanmayın.</label></td>
         </tr>
 
         <tr class="form-group">
             <td><label for="sayfa">Sayfa</label> </td>
             <td><input id="sayfa" name="sayfa" type="text"> </td>
+            <td>Sayfa Sayısı</td>
         </tr>
 
         <tr class="form-group">
             <td><label for="adet">Adet</label></td>
             <td><input id="adet" name="adet" type="text"></td>
+            <td>Adet</td>
         </tr>
+
         <tr>
-            <td rowspan="2">
+            <td rowspan="3">
                 <button type="submit" class="btn btn-primary">Filtrele</button>
             </td>
         </tr>

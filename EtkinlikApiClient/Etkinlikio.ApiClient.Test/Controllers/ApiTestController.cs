@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using EtkinlikIO.ApiClient;
-using EtkinlikIO.ApiClient.Models.Reponses;
 using EtkinlikIO.ApiClient.Models.Requests;
 using Etkinlikio.ApiClient.Test.Models;
+using EtkinlikIO.ApiClient.Models.Reponses;
 
 namespace Etkinlikio.ApiClient.Test.Controllers
 {
     public class ApiTestController : Controller
     {
-        EtkinlikIO.ApiClient.ApiClient client = 
-            new EtkinlikIO.ApiClient.ApiClient("7fb992c135adff01cdc6c33f9903d064");
+        EtkinlikIO.ApiClient.ApiClient client =
+            new EtkinlikIO.ApiClient.ApiClient("TOKEN-GIRILECEK-ALAN");
 
         public ActionResult Index()
         {
@@ -31,11 +31,11 @@ namespace Etkinlikio.ApiClient.Test.Controllers
             EtkinlikListeConfig config = new EtkinlikListeConfig();
 
             if (model.adet != 0) config.setAdet(model.adet);
-            if (model.kategoriId != 0) config.setKategoriId(model.kategoriId);
-            if (model.mekanId != 0) config.setMekanId(model.mekanId);
+            if (model.kategoriIds != null) config.setKategoriIds(model.kategoriIds);
+            if (model.mekanIds != null) config.setMekanIds(model.mekanIds);
             if (model.sayfa != 0) config.setSayfa(model.sayfa);
-            if (model.sehirId != 0) config.setSehirId(model.sehirId);
-            if (model.turId != 0) config.setTurId(model.turId);
+            if (model.sehirIds != null) config.setSehirIds(model.sehirIds);
+            if (model.turIds != null) config.setTurIds(model.turIds);
 
             EtkinlikListeResponse response = client.EtkinlikService.GetList(config);
             ViewBag.sayfalama = response.sayfalama;
@@ -48,10 +48,10 @@ namespace Etkinlikio.ApiClient.Test.Controllers
             return View(kategoriler);
         }
 
-        public ActionResult KategoriEtkinlik(int id)
+        public ActionResult KategoriEtkinlik(string id)
         {
             EtkinlikListeConfig config = new EtkinlikListeConfig();
-            config.setKategoriId(id);
+            config.setKategoriIds(id);
 
             EtkinlikListeResponse response = client.EtkinlikService.GetList(config);
             ViewBag.sayfalama = response.sayfalama;
@@ -64,10 +64,10 @@ namespace Etkinlikio.ApiClient.Test.Controllers
             return View(sehirler);
         }
 
-        public ActionResult SehirEtkinlik(int id)
+        public ActionResult SehirEtkinlik(string ids)
         {
             EtkinlikListeConfig config = new EtkinlikListeConfig();
-            config.setSehirId(id);
+            config.setSehirIds(ids);
 
             EtkinlikListeResponse response = client.EtkinlikService.GetList(config);
             ViewBag.sayfalama = response.sayfalama;
@@ -80,14 +80,14 @@ namespace Etkinlikio.ApiClient.Test.Controllers
             return View(turler);
         }
 
-        public ActionResult TurEtkinlik(int id)
+        public ActionResult TurEtkinlik(string id)
         {
             EtkinlikListeConfig config = new EtkinlikListeConfig();
-            config.setTurId(id);
+            config.setTurIds(id);
 
             EtkinlikListeResponse response = client.EtkinlikService.GetList(config);
             ViewBag.sayfalama = response.sayfalama;
-            return View("Etkinlik",response.kayitlar);
+            return View("Etkinlik", response.kayitlar);
         }
 
         public ActionResult Ilce(int id)
@@ -103,5 +103,5 @@ namespace Etkinlikio.ApiClient.Test.Controllers
         }
 
 
-	}
+    }
 }
