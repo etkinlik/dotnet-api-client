@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EtkinlikIO.ApiClient.Models.Ilce>
+
+@{
+    ViewBag.Title = "Ilce";
+}
+
+<h2>Ilce</h2>
+
+<table class="table table-responsive table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adi)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.adi)
+            </td>
+            <td>
+                <a href="~/ApiTest/Semt/@item.id">Semt Bilgi -></a>
+            </td>
+        </tr>
+    }
+
+</table>

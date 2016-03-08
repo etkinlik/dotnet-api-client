@@ -10,56 +10,61 @@ namespace EtkinlikIO.ApiClient.Models.Requests
 {
     public class EtkinlikListeConfig
     {
-        private int turId;
-        private int kategoriId;
-        private int mekanId;
-        private int sehirId;
+        //private List<int> turIds;
+
+        private string turIds;
+        private string kategoriIds;
+        private string mekanIds;
+        private string sehirIds;
+
         private int sayfa;
         private int adet;
 
-        public NameValueCollection Params ()
+        public NameValueCollection Params()
         {
-            var query = HttpUtility.ParseQueryString (String.Empty);
-            query.Add ("turId", this.turId.ToString ());
-            query.Add ("kategoriId", this.kategoriId.ToString ());
-            query.Add ("mekanId", this.mekanId.ToString ());
-            query.Add ("sehirId", this.sehirId.ToString ());
-            query.Add ("sayfa", this.sayfa.ToString ());
-            query.Add ("adet", this.adet.ToString ());
+            var query = HttpUtility.ParseQueryString(String.Empty);
+
+            query.Add("turIds", this.turIds);
+            query.Add("kategoriIds", this.kategoriIds);
+            query.Add("mekanIds", this.mekanIds);
+            query.Add("sehirIds", this.sehirIds);
+            query.Add("sayfa", this.sayfa.ToString());
+            query.Add("adet", this.adet.ToString());
+
             return query;
         }
 
-        public EtkinlikListeConfig setTurId (int turId)
+        public EtkinlikListeConfig setTurIds(string turIds)
         {
-            this.turId = turId;
+            this.turIds = turIds;
             return this;
         }
 
-        public EtkinlikListeConfig setKategoriId (int kategoriId)
+        public EtkinlikListeConfig setKategoriIds(string kategoriIds)
         {
-            this.kategoriId = kategoriId;
+            this.kategoriIds = kategoriIds;
             return this;
         }
 
-        public EtkinlikListeConfig setMekanId (int mekanId)
+        public EtkinlikListeConfig setMekanIds(string mekanIds)
         {
-            this.mekanId = mekanId;
+            this.mekanIds = mekanIds;
             return this;
         }
 
-        public EtkinlikListeConfig setSehirId (int sehirId)
+        public EtkinlikListeConfig setSehirIds(string sehirIds)
         {
-            this.sehirId = sehirId;
+            this.sehirIds = sehirIds;
             return this;
         }
 
-        public EtkinlikListeConfig setSayfa (int sayfa)
+        public EtkinlikListeConfig setSayfa(int sayfa)
         {
             this.sayfa = sayfa;
             return this;
         }
 
-        public EtkinlikListeConfig setAdet (int adet)
+        public EtkinlikListeConfig setAdet(int adet)
         {
             this.adet = adet;
             return this;

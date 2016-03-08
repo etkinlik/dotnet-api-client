@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EtkinlikIO.ApiClient.Models.Sehir>
+
+@{
+    ViewBag.Title = "Sehir";
+}
+
+<h2>Sehir</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.radi)
+        </th>
+        <th></th>
+        <th>
+
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.radi)
+        </td>
+        <td>
+            <a href="~/ApiTest/SehirEtkinlik/@item.id"> Şehrin Etkinlik Listesi -></a>
+        </td>
+        <td>
+            <a href="~/ApiTest/Ilce/@item.id">Ilce Bilgi -></a>
+        </td>
+    </tr>
+}
+
+</table>

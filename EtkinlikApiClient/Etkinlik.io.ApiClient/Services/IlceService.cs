@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using EtkinlikIO.ApiClient.Exceptions;
+﻿using EtkinlikIO.ApiClient.Exceptions;
 using EtkinlikIO.ApiClient.Models;
 using EtkinlikIO.ApiClient.Models.Reponses;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 
 namespace EtkinlikIO.ApiClient.Services
 {
@@ -17,30 +12,32 @@ namespace EtkinlikIO.ApiClient.Services
     {
         private ApiClient client;
 
-        public IlceService (ApiClient client)
+        public IlceService(ApiClient client)
         {
             this.client = client;
         }
 
-        public List<Ilce> GetListBySehirId (int sehirId)
+        public List<Ilce> GetListBySehirId(int sehirId)
         {
-            Task<HttpResponseMessage> response = client.ApiCall ("/sehir/" + sehirId + "/ilceler");
+            HttpWebResponse response = client.ApiCall("/sehir/" + sehirId + "/ilceler");
 
-            string result = response.Result.Content.ReadAsStringAsync ().Result;
+            StreamReader reader = new StreamReader(response.GetResponseStream());
 
-            switch (response.Result.StatusCode) {
+            string result = reader.ReadToEnd();
+
+            switch (response.StatusCode)
+            {
                 case HttpStatusCode.OK:
-                    return JsonConvert.DeserializeObject<List<Ilce>> (result);
+                    return JsonConvert.DeserializeObject<List<Ilce>>(result);
 
                 case HttpStatusCode.BadRequest:
-                    throw new BadRequestException (JsonConvert.DeserializeObject<GeneralErrorResponse> (result));
+                    throw new BadRequestException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
 
                 case HttpStatusCode.Unauthorized:
-                    throw new UnauthorizedException (JsonConvert.DeserializeObject<GeneralErrorResponse> (result));
+                    throw new UnauthorizedException(JsonConvert.DeserializeObject<GeneralErrorResponse>(result));
             }
 
-            throw new UnknownException (response.Result);
+            throw new UnknownException(response);
         }
     }
-
 }

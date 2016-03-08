@@ -1,9 +1,9 @@
-﻿using System;
+﻿using EtkinlikIO.ApiClient.Models.Etkinlikler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EtkinlikIO.ApiClient.Models.Etkinlikler;
 
 namespace EtkinlikIO.ApiClient.Models
 {
